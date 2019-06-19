@@ -1,0 +1,23 @@
+version: '3'
+services:
+  api:
+    build: .
+    environment:
+      DB_USER: 'cloud'
+      DB_PASS: 'fun'
+      DB_IP: 'db'
+      DB_PORT: '3306'
+      DB_NAME: 'cloud-training'
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+  db:
+    image: 'mysql:5.7'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'rootpass'
+      MYSQL_DATABASE: 'cloud-training'
+      MYSQL_USER: 'cloud'
+      MYSQL_PASSWORD: 'fun'
+    ports:
+      - "3306:3306"
